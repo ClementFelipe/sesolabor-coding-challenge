@@ -14,12 +14,12 @@ Since the problem is printing logs in an ordered fashion (least date first) this
 
 The algorithm consists of two steps:
 
-1. Building an initial heap with the N first logs from each log source, this will guarantee obtaining the minimum and preserve the order of the elements when the next minimum log is required.
+1. Building an initial heap with the firs log from each of the M log sources, this will guarantee obtaining the minimum and preserve the order of the elements when the next minimum log is required.
 2. Adding the next log entries to the heap and printing the minimum, this is done in a two step cycle:
     1. Print out the current minimum in the heap
     2. Replace the minimum with the next log, which will reorganize the heap, preserving order with previous elements. The minimum is replaced in order to save time instead of deleting the old minimum and inserting the new log. The next log chosen is also important, as it has to be from the same source as the previously obtained minimum. This is done to guarantee that the heap will not be filled with elements too large.
 
-Given an initial heap of size N (number of log sources) is built, and elements the minimum is always just replaced and no more elements added, the space usage of this will always be O(N), keeping it very minimal and well under the constraints of the problem. Given M arrays and N elements, the time complexity of this is O(N*log(M)), given that for every single log there is an insertion that is O(M).
+Given an initial heap of size M (number of log sources) is built, and elements the minimum is always just replaced and no more elements added, the space usage of this will always be O(N), keeping it very minimal and well under the constraints of the problem. Given M arrays and N elements, the time complexity of this is O(N*log(M)), given that for every single log there is an insertion that is O(M).
 
 An example:
 
