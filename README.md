@@ -1,3 +1,5 @@
+Note: nodejs version 16.17.0 was used
+
 # Solution
 
 This problem can be thought of as merging N ordered arrays. However there a two added difficulties, which are the size of the possible arrays and the async access to the array elements.
@@ -18,6 +20,11 @@ The algorithm consists of two steps:
     2. Replace the minimum with the next log, which will reorganize the heap, preserving order with previous elements. The minimum is replaced in order to save time instead of deleting the old minimum and inserting the new log. The next log chosen is also important, as it has to be from the same source as the previously obtained minimum. This is done to guarantee that the heap will not be filled with elements too large.
 
 Given an initial heap of size N (number of log sources) is built, and elements the minimum is always just replaced and no more elements added, the space usage of this will always be O(N), keeping it very minimal and well under the constraints of the problem.
+
+An example:
+
+![Screen Shot 2022-09-06 at 6 46 03 PM](https://user-images.githubusercontent.com/23247540/188759175-d17e40cc-b095-4475-a251-6b8a212e05e9.png)
+
 
 <img align="left" width="100px" height="100px" src="https://user-images.githubusercontent.com/12256205/162470824-d34c5fad-555e-498b-9ac9-ba86b6eb057a.png">
 
