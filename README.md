@@ -19,7 +19,7 @@ The algorithm consists of two steps:
     1. Print out the current minimum in the heap
     2. Replace the minimum with the next log, which will reorganize the heap, preserving order with previous elements. The minimum is replaced in order to save time instead of deleting the old minimum and inserting the new log. The next log chosen is also important, as it has to be from the same source as the previously obtained minimum. This is done to guarantee that the heap will not be filled with elements too large.
 
-Given an initial heap of size N (number of log sources) is built, and elements the minimum is always just replaced and no more elements added, the space usage of this will always be O(N), keeping it very minimal and well under the constraints of the problem.
+Given an initial heap of size N (number of log sources) is built, and elements the minimum is always just replaced and no more elements added, the space usage of this will always be O(N), keeping it very minimal and well under the constraints of the problem. Given M arrays and N elements, the time complexity of this is O(N*log(M)), given that for every single log there is an insertion that is O(M).
 
 An example:
 
