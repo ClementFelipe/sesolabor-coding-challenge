@@ -1,6 +1,27 @@
+# Solution
+
+This problem can be thought of as merging N ordered arrays. However there a two added difficulties, which are the size of the possible arrays and the async access to the array elements.
+
+Given the memory restriction of the problem, it is impossible to store even one of the log sources in memory, therefore, the merging of the log sources must be done using minimal memory.
+
+In a more basic scenario, we can merge two arrays of size M and N by using two pointers, and this solution would have a time complexity of O(M+N). However, in this case the number of arrays is dynamic, therefore the merging of arrays must be done through another mechanism (data structure). In the case of N arrays, looking at the first element of every array and getting the lowest value (log date) would yield the first value to print. We would then have to continue looking in the arrays for the next element to print, while maintaining the order of the previously obtained elements.
+
+Since the problem is printing logs in an ordered fashion (least date first) this means we must use a data structure that can give us fast access to the minimum, while also maintaining the order of previously inserted entries, also insertion must be fast. A data structure that maintains order and gives fast access to the minimum is called a [MinHeap](https://en.wikipedia.org/wiki/Binary_heap) which is a special case of a binary heap, which has insertion times of O(log(N)) and can obtain the minimum in O(1).
+
+## Algorithm
+
+The algorithm consists of two steps:
+
+1. Building an initial heap with the N first logs from each log source, this will guarantee obtaining the minimum and preserve the order of the elements when the next minimum log is required.
+2. Adding the next log entries to the heap and printing the minimum, this is done in a two step cycle:
+    1. Print out the current minimum in the heap
+    2. Replace the minimum with the next log, which will reorganize the heap, preserving order with previous elements. The minimum is replaced in order to save time instead of deleting the old minimum and inserting the new log. The next log chosen is also important, as it has to be from the same source as the previously obtained minimum. This is done to guarantee that the heap will not be filled with elements too large.
+
+Given an initial heap of size N (number of log sources) is built, and elements the minimum is always just replaced and no more elements added, the space usage of this will always be O(N), keeping it very minimal and well under the constraints of the problem.
+
 <img align="left" width="100px" height="100px" src="https://user-images.githubusercontent.com/12256205/162470824-d34c5fad-555e-498b-9ac9-ba86b6eb057a.png">
 
-# SESO Coding Challenge: Log Sorting
+## SESO Coding Challenge: Log Sorting
 
 <br>
 
