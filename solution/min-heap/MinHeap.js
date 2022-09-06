@@ -27,37 +27,6 @@ module.exports = class MinHeap {
     return this.heap[0];
   }
 
-  popMin() {
-    if (this.size < 1) {
-      return undefined;
-    }
-
-    const min = this.heap[0];
-
-    const lastIndex = this.size - 1;
-    const last = this.heap[lastIndex];
-
-    this.heap[lastIndex] = undefined;
-
-    if (this.size > 1) {
-      this.replaceMin(last.value, last.object);
-    }
-
-    this.size -= 1;
-
-    return min;
-  }
-
-  popAll() {
-    const all = [];
-
-    while (this.size > 0) {
-      all.push(this.popMin());
-    }
-
-    return all;
-  }
-
   swapUp() {
     let lastIndex = this.heap.length - 1;
     let parentIndex = this.getParentIndex(lastIndex);

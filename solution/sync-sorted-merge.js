@@ -6,7 +6,11 @@ function addLogSourceIndexToLog(log, logSourceIndex) {
   return { ...log, logSourceIndex };
 }
 
+// SEE README for the general explanation of the algorithm
 module.exports = (logSources, printer) => {
+  // PART 1 - We build the initial min-heap with the first elements of every
+  // log source. Declare a variable that counts down whenever a log source is drained,
+  // execution will stop when all sources are drained.
   const heap = new MinHeap();
 
   let remainingSourcesCount = logSources.length;
@@ -14,6 +18,8 @@ module.exports = (logSources, printer) => {
   logSources.forEach((source, i) => {
     const log = source.pop();
 
+    // Check that we dont get a "false" from the start, The way LogSource is implemented
+    // this will never happen, but it's best to be safe in a real world scenario
     if (log) {
       heap.insert(log.date.getTime(), addLogSourceIndexToLog(log, i));
     } else {
@@ -21,13 +27,16 @@ module.exports = (logSources, printer) => {
     }
   });
 
+  // PART 2 - Iterate the following:
+  //   - Print minimum (earliest log) from the heap
+  //   - Replace the removed log with the next log from it's same source
+  //   - If we are done with the source (get a "false") then we add MAX_VALUE
+  //     to the heap so it goes to the bottom
   while (remainingSourcesCount > 0) {
     const { object: currentLog } = heap.getMin();
-
     printer.print(currentLog);
 
     const { logSourceIndex } = currentLog;
-
     const nextLog = logSources[logSourceIndex].pop();
 
     if (nextLog) {
@@ -40,30 +49,3 @@ module.exports = (logSources, printer) => {
 
   printer.done();
 };
-
-// class FakeLogSource {
-//   constructor(ls) {
-//     this.ls = ls;
-//   }
-
-//   pop() {
-//     const val = this.ls.shift();
-//     return val ? { date: new Date(24 * 60 * 60 * 1000 * val), msg: '' } : false;
-//   }
-// }
-
-// const lss = [
-//   [1, 8, 11, 12],
-//   [7, 10, 11, 30],
-//   [3, 4, 13, 20],
-// ];
-
-// const sources = [];
-
-// for (let i = 0; i < lss.length; i += 1) {
-//   sources.push(new FakeLogSource(lss[i]));
-// }
-
-// const printer = new Printer();
-
-// solution(sources, printer);
