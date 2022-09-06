@@ -15,7 +15,6 @@ module.exports = (logSources, printer) => {
     const log = source.pop();
 
     if (log) {
-      // TODO: FIX TO GET TIME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       heap.insert(log.date.getTime(), addLogSourceIndexToLog(log, i));
     } else {
       remainingSourcesCount -= 1;
@@ -23,16 +22,15 @@ module.exports = (logSources, printer) => {
   });
 
   while (remainingSourcesCount > 0) {
-    const earliestLogEntry = heap.getMin();
+    const { object: currentLog } = heap.getMin();
 
-    printer.print(earliestLogEntry.object);
+    printer.print(currentLog);
 
-    const { logSourceIndex } = earliestLogEntry.object;
+    const { logSourceIndex } = currentLog;
 
     const nextLog = logSources[logSourceIndex].pop();
 
     if (nextLog) {
-      // TODO: FIX TO GET TIME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       heap.replaceMin(nextLog.date.getTime(), addLogSourceIndexToLog(nextLog, logSourceIndex));
     } else {
       heap.replaceMin(Number.MAX_VALUE);
