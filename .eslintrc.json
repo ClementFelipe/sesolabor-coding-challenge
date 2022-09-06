@@ -1,3 +1,7 @@
 {
-    "extends": "eslint-config-airbnb-base"
+    "extends": ["eslint-config-airbnb-base"],
+    "plugins": ["jest"],
+    "env": {
+        "jest/globals": true     
+    }
 }
