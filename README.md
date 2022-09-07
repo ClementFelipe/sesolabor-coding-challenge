@@ -17,7 +17,9 @@ The algorithm consists of two steps:
 1. Building an initial heap with the firs log from each of the M log sources, this will guarantee obtaining the minimum and preserve the order of the elements when the next minimum log is required.
 2. Adding the next log entries to the heap and printing the minimum, this is done in a two step cycle:
     1. Print out the current minimum in the heap
-    2. Replace the minimum with the next log, which will reorganize the heap, preserving order with previous elements. The minimum is replaced in order to save time instead of deleting the old minimum and inserting the new log. The next log chosen is also important, as it has to be from the same source as the previously obtained minimum. This is done to guarantee that the heap will not be filled with elements too large.
+    2. Replace the 
+
+minimum with the next log, which will reorganize the heap, preserving order with previous elements. The minimum is replaced in order to save time instead of deleting the old minimum and inserting the new log. The next log chosen is also important, as it has to be from the same source as the previously obtained minimum. This is done to guarantee that the heap will not be filled with elements too large.
 
 Given an initial heap of size M (number of log sources) is built, and elements the minimum is always just replaced and no more elements added, the space usage of this will always be O(N), keeping it very minimal and well under the constraints of the problem. Given M arrays and N elements, the time complexity of this is O(N*log(M)), given that for every single log there is an insertion that is O(M).
 
@@ -32,6 +34,8 @@ Unit tests are added to validate functionality of the heap and both sync and asy
 ## Result times
 
 On my system, the sync solution runs in ~1.3 seconds with ~18500 logs/second and the async solution in ~3 seconds with ~8000 logs/second.
+
+https://user-images.githubusercontent.com/23247540/188760408-2c6ebe63-a796-40ba-a249-11a148e67b94.mov
 
 <img align="left" width="100px" height="100px" src="https://user-images.githubusercontent.com/12256205/162470824-d34c5fad-555e-498b-9ac9-ba86b6eb057a.png">
 
