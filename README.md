@@ -25,6 +25,13 @@ An example:
 
 ![Screen Shot 2022-09-06 at 6 46 03 PM](https://user-images.githubusercontent.com/23247540/188759175-d17e40cc-b095-4475-a251-6b8a212e05e9.png)
 
+## Tests
+
+Unit tests are added to validate functionality of the heap and both sync and async solutions, use `npm test` in order to run. An end to end test of both solutions is already provided with the challenge and can be run using `npm start`.
+
+## Result times
+
+On my system, the sync solution runs in ~1.3 seconds with ~18500 logs/second and the async solution in ~3 seconds with ~8000 logs/second.
 
 <img align="left" width="100px" height="100px" src="https://user-images.githubusercontent.com/12256205/162470824-d34c5fad-555e-498b-9ac9-ba86b6eb057a.png">
 
